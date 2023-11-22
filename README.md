@@ -40,6 +40,16 @@ So I do a fork with original PyTorch and modified its code to enable DMA method.
 - PyTorch 2.0 Compatible CUDA Developer Toolkit with CUDNN. See Build sections for details in Backend modules README.md file
 - A GUI environment with browser to run frontend HTML code
 
+
+### File Directory Structure
+
+- Backend
+    - [PyTorch_For_PoorGuys](https://github.com/UEFI-code/PyTorch_For_PoorGuys): The Core Module I have been proposed.
+    - [DeepSpeedExamples](https://github.com/UEFI-code/DeepSpeedExamples): The LLM training & infering code that I forked and modified from Microsoft's Repo
+- Frontend
+    - playground.html: The HTML & Javascript Demo site that connect to Backend.
+    - dummyBackend.py: The Python & Flask code that mook Backend response to debugging Frontend
+
 ### Notice
 
 - This code will not Allocate Pageable Host Memory, which means it occupy Physic RAM at runtime
