@@ -22,6 +22,8 @@ So I do a fork with original PyTorch and modified its code to enable DMA method.
 
 - Hacking the GPU Driver to DIY Memory-Management-Unit, enable more flexable way to play with GPU
 - Let GPU controlling Hardware (Like Servo Motors) using Host Physic-Address via DMA directly
+- Use FPGA to design a Physics Address Listener via PCI-E and DMA to interaction with GPU
+- It will be interesting when Sensor signal can be passed to the Deep-Learning-Model in parallel directly, and the Model output signal can controlling device in parallel directly, just let CPU to sleep!
 
 ### Hardware Requirement
 
