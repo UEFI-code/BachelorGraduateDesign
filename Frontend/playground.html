@@ -266,9 +266,7 @@
                         "Content-Type": "application/json"
                     },
                     body: sendData
-                }).then(response => response.json()).then(recvData => {
-                    // decode the response
-                    var response = JSON.parse(recvData.response);
+                }).then(response => response.json()).then(response => {
                     // get the response status
                     if (response.status == "OK")
                     {
