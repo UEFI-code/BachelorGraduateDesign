@@ -50,6 +50,24 @@ So I do a fork with original PyTorch and modified its code to enable DMA method.
     - playground.html: The HTML & Javascript Demo site that connect to Backend.
     - dummyBackend.py: The Python & Flask code that mook Backend response to debugging Frontend
 
+### Sync the Repo
+
+```bash
+git clone --recursive https://github.com/UEFI-code/BachelorGraduationDesign
+```
+
+Or if you have already cloned the repo, you can sync the submodules by:
+
+```bash
+git submodule update --init --recursive
+```
+
+If the sync of submodules has error, then you can try to reset the submodules by:
+
+```bash
+git submodule foreach git reset --hard
+```
+
 ### Notice
 
 - This code will not Allocate Pageable Host Memory, which means it occupy Physic RAM at runtime
