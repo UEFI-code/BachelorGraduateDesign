@@ -12,6 +12,8 @@ I want to let GPU borrow some Host-RAM to buffer LLM data when its VRAM has been
 
 So I do a fork with original PyTorch and modified its code to enable DMA method.
 
+You can download the prebuilt wheel installer file of the hacked version of PyTorch from [here](https://github.com/UEFI-code/PyTorch_For_PoorGuys/releases), or build it yourself from source code!
+
 ### Features
 
 - Allocated Memory Buffer on VRAM first for Lower Latency, once the VRAM exhausted, it automatic allocated from Host RAM
