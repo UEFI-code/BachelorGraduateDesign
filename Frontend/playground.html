@@ -235,18 +235,20 @@
   
                 document.getElementById("user-input").value = "";
 
-                var chathistory = document.getElementById("chat-history").innerText.replace(/Copy\sEdit\sDelete/g, "");  
-                var prompt = "This is a special netural language structure containing chat History and your response. You are a robot girl now. The user nickname is " + nickname + ". Please answer directly without any prefix.\nHistory:\n----------\n" + chathistory + "\n----------\nAI: ";
+                //var chathistory = document.getElementById("chat-history").innerText.replace(/Copy\sEdit\sDelete/g, "");  
+                //var prompt = "This is a special netural language structure containing chat History and your response. You are a robot girl now. The user nickname is " + nickname + ". Please answer directly without any prefix.\nHistory:\n----------\n" + chathistory + "\n----------\nAI: ";
+                // The Model is not smart enough to understand this!
+
                 var model = getModel();
                 // pack to json
                 var sendData = {
-                    "prompt": prompt,
+                    "prompt": userInput,
                     "model": model
                 };
                 sendData = JSON.stringify(sendData);
                 alert("Debug: " + sendData);
                 // send to backend, http://localhost:5000/chat_test
-                fetch("http://localhost:5000/chat_test", {
+                fetch("http://10.1.86.46:5000/chat", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -307,8 +309,7 @@
         <input type="text" id="nickname" placeholder="Enter your nickname">  
         <input type="text" id="user-input" placeholder="Type your message" onkeypress="handleKeyPress(event)">  
         <select id="model-selector">  
-            <option value="TestA">TestA</option>  
-            <option value="TestB">TestB</option>
+            <option value="ChatGPT_1.3b">ChatGPT_1.3b</option>  
         </select>  
         <button id="submit" onclick="sendMessage()">Send</button>  
         <button id="clear" onclick="clearChatHistory()">Clear Chat History</button>  
