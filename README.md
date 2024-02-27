@@ -1,6 +1,25 @@
 # My Bachelor Graduation Design
 
-### PyTorch_For_PoorGuys: A Deep Learning Framework for Training Large-Language-Model on Cheap Workstation with Smaller VRAM required.
+```
+On the lonely road of coding, long and winding,
+Poverty's shackles often leave hearts pining.
+But I believe, despite all the pain and sorrow,
+My thesis shall bring forth a brighter tomorrow.
+
+PyTorch_For_PoorGuys, a name not renowned,
+Yet with dreams in my heart, aspirations unbound.
+Harnessing CPU might to transcend VRAM's plight,
+May my design illuminate, dispelling the night.
+
+In the ocean of tech, I journey with zest,
+Exploring, challenging limits, never at rest.
+May my thesis, like the North Star, guide the way,
+Breaking poverty's chains, bringing forth a new day.
+```
+
+Poem by OpenAI ChatGPT_3.5
+
+###### PyTorch_For_PoorGuys: A Deep Learning Framework for Training Large-Language-Model on Cheap Workstation with Smaller VRAM required.
 
 NVIDIA GeForce 1080Ti/2080Ti/3090/4090 are cheaper for Universitys or personal researchers.
 
@@ -39,9 +58,8 @@ You can download the prebuilt wheel installer file of the hacked version of PyTo
 
 - Debian Style of Linux, Ubuntu 20.04 LTS is suggested
 - PyTorch 2.0 Compatible GPU Driver
-- PyTorch 2.0 Compatible CUDA Developer Toolkit with CUDNN. See Build sections for details in Backend modules README.md file
-- A GUI environment with browser to run frontend HTML code
-
+- PyTorch 2.0 Compatible CUDA Developer Toolkit. See Build sections for details in Backend modules README.md file
+- A GUI environment with browser to run frontend HTML code (Can be on your laptop or another computer)
 
 ### File Directory Structure
 
