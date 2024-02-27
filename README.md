@@ -38,7 +38,7 @@ You can download the prebuilt wheel installer file of the hacked version of PyTo
 
 - Allocated Memory Buffer on VRAM first for Lower Latency, once the VRAM exhausted, it automatic allocated from Host RAM
 - Create a Memory Pointer which can be both accessed from CPU or GPU side (Need hacking code yourself if you want completely using DMA)
-- With an easy version of Website working around with an Toy ChatGPT pretrained by this framework
+- With an easy version of Website working around with a Toy ChatGPT pretrained by this framework
 
 ### Future
 
