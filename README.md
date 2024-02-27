@@ -15,9 +15,10 @@ In the ocean of tech, I journey with zest,
 Exploring, challenging limits, never at rest.
 May my thesis, like the North Star, guide the way,
 Breaking poverty's chains, bringing forth a new day.
-```
 
-Poem by OpenAI ChatGPT_3.5
+
+Poem written by OpenAI's ChatGPT 3.5
+```
 
 ###### PyTorch_For_PoorGuys: A Deep Learning Framework for Training Large-Language-Model on Cheap Workstation with Smaller VRAM required.
 
