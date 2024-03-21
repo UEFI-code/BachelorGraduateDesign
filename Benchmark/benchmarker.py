@@ -2,11 +2,14 @@ import pycuda.driver as cuda
 import GPUEnergy
 import time
 import torch
+from tqdm import tqdm
+import sys
 
 cuda.init()
 device = cuda.Device(0)
 context = device.make_context()
-print(f'GPU: {device.name()}')
+gpuName = device.name()
+cpuName = open('/proc/cpuinfo').read().split('model name\t: ')[1].split('\n')[0]
 
 # Init PyTorch operations on GPU
 LinearA = torch.nn.Linear(4096, 4096).cuda()
@@ -47,19 +50,19 @@ def doTestGPU(myGPUConsume, Linear, Tensor):
 
 def doTestCPU(Linear, Tensor):
     start = time.time()
-    for _ in range(1000):
+    for _ in tqdm(range(1000)):
         Linear(Tensor)
     timeElapsed = time.time() - start
     print(f'Time Elapsed: {timeElapsed} s')
 
 print('-----------------Benchmark Start-----------------')
-print('Test 1: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, GPU, VRAM')
+print(f'Test 1: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, {gpuName}, VRAM')
 doTestGPU(myGPUConsume, LinearA, TensorA)
-print('Test 2: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, GPU, DMA')
+print(f'Test 2: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, {gpuName}, DMA')
 doTestGPU(myGPUConsume, LinearB, TensorB)
 ### Test3 will be run on CPU, so we need to stop the GPU energy consumption
 myGPUConsume.gameOver = True
-print('Test 3: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, CPU, RAM')
+print(f'Test 3: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, {cpuName}, RAM')
 doTestCPU(LinearC, TensorC)
 print('-----------------Benchmark End-----------------')
 context.pop()
