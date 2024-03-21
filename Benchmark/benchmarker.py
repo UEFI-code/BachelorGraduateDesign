@@ -8,7 +8,7 @@ device = cuda.Device(0)
 context = device.make_context()
 print(f'GPU: {device.name()}')
 
-# Init PyTorch computation
+# Init PyTorch operations on GPU
 LinearA = torch.nn.Linear(4096, 4096).cuda()
 TensorA = torch.randn(4096, 4096).cuda()
 
@@ -23,31 +23,43 @@ print(f'Now GPU Memory Free: {free / 1024 / 1024} MB')
 LinearB = torch.nn.Linear(4096, 4096).cuda()
 TensorB = torch.randn(4096, 4096).cuda()
 
+# Init PyTorch operations on CPU
+LinearC = torch.nn.Linear(4096, 4096)
+TensorC = torch.randn(4096, 4096)
+
 # Init Compute
 LinearA(TensorA)
 LinearB(TensorB)
+LinearC(TensorC)
 
 # OK, Let's go!
+
 myGPUConsume = GPUEnergy.GPUEnergy(0, 0.1)
+
+def doTestGPU(myGPUConsume, Linear, Tensor):
+    myGPUConsume.energyConsumed = 0
+    start = time.time()
+    for _ in range(1000):
+        Linear(Tensor)
+    timeElapsed = time.time() - start
+    energyConsumed = myGPUConsume.energyConsumed
+    print(f'Time Elapsed: {timeElapsed} s, Energy Consumed: {energyConsumed} J')
+
+def doTestCPU(Linear, Tensor):
+    start = time.time()
+    for _ in range(1000):
+        Linear(Tensor)
+    timeElapsed = time.time() - start
+    print(f'Time Elapsed: {timeElapsed} s')
+
 print('-----------------Benchmark Start-----------------')
-print('Test 1: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, VRAM')
-myGPUConsume.energyConsumed = 0
-start = time.time()
-for i in range(1000):
-    LinearA(TensorA)
-timeElapsed = time.time() - start
-energyConsumed = myGPUConsume.energyConsumed
-print(f'Time Elapsed: {timeElapsed} s, Energy Consumed: {energyConsumed} J')
-print('Test 2: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, DMA')
-myGPUConsume.energyConsumed = 0
-start = time.time()
-for i in range(1000):
-    LinearB(TensorB)
-timeElapsed = time.time() - start
-energyConsumed = myGPUConsume.energyConsumed
-print(f'Time Elapsed: {timeElapsed} s, Energy Consumed: {energyConsumed} J')
+print('Test 1: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, GPU, VRAM')
+doTestGPU(myGPUConsume, LinearA, TensorA)
+print('Test 2: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, GPU, DMA')
+doTestGPU(myGPUConsume, LinearB, TensorB)
+### Test3 will be run on CPU, so we need to stop the GPU energy consumption
+myGPUConsume.gameOver = True
+print('Test 3: 4096x4096 Tensor on 4096x4096 Linear, 1000 times, CPU, RAM')
+doTestCPU(LinearC, TensorC)
 print('-----------------Benchmark End-----------------')
-
 context.pop()
-
-
