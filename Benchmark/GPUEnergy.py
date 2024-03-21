@@ -5,6 +5,7 @@ import threading
 class GPUEnergy:
     def __init__(self, gpu_num=0, dt=0.1):
         self.dt = dt
+        self.energyConsumed = 0
         py3nvml.nvmlInit()
         try:
             self.handle = py3nvml.nvmlDeviceGetHandleByIndex(gpu_num)
@@ -12,7 +13,6 @@ class GPUEnergy:
         except:
             print("GPU not found")
             return
-        self.energyConsumed = 0
     
     def integralEnergy(self):
         while True:
