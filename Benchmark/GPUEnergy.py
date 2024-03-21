@@ -9,13 +9,14 @@ class GPUEnergy:
         py3nvml.nvmlInit()
         try:
             self.handle = py3nvml.nvmlDeviceGetHandleByIndex(gpu_num)
+            self.gameOver = False
             threading.Thread(target=self.integralEnergy).start()
         except:
             print("GPU not found")
             return
     
     def integralEnergy(self):
-        while True:
+        while not self.gameOver:
             power = py3nvml.nvmlDeviceGetPowerUsage(self.handle) / 1000
             self.energyConsumed += power * self.dt
             time.sleep(self.dt)
